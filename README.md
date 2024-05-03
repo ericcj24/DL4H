@@ -2,9 +2,9 @@
 
 This file describes the Google Colab implementation to reproduce the results from Transfer Learning for ECG Classification paper.
 
-### Steps
+### Preparation
 
-1. *Download the Icentia11k dataset.* Follow the instructions from the paper <https://arxiv.org/abs/1910.09570>. Let's assume now that the downloaded data is in the `data/icentia11k` directory.
+1. *Data, model weights, and original paper code are stored on Google Drive, the notebook pulls down those information
 
 2. *Optionally, unzip the data files.* If you don't mind sacrificing storage for faster i/o, you can unzip the downloaded files. After running the code snippet below, your unzipped data should be in the `data/icentia11k_unzipped` directory.
 
@@ -13,10 +13,7 @@ This file describes the Google Colab implementation to reproduce the results fro
    from pretraining.utils import unzip_icentia11k
    unzip_icentia11k(
        db_dir='data/icentia11k',
-       patient_ids=icentia11k.ds_patient_ids,
-       out_dir='data/icentia11k_unzipped',
-       verbose=True)
-    ```
+       patient_ids=icentia11k.ds_patie
 
 3. *Run the pretraining job of your choice.* Let's run a beat classification job which will produce output files, such as training history or model checkpoints, that can be found in the `jobs/beat_classification` directory. Notice the `--arch` option that we used to specify ResNet-18 as the architecture that we want to pretrain. For more options, see `pretraining/trainer.py`.
 
