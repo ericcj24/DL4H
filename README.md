@@ -6,14 +6,11 @@ This file describes the Google Colab implementation to reproduce the results fro
 
 1. *Data, model weights, and original paper code are stored on Google Drive, the notebook pulls down those information
 
-2. *Optionally, unzip the data files.* If you don't mind sacrificing storage for faster i/o, you can unzip the downloaded files. After running the code snippet below, your unzipped data should be in the `data/icentia11k_unzipped` directory.
-
+2. *Some key packages' version used in this reproduction.
     ```python
-   from transplant.datasets import icentia11k
-   from pretraining.utils import unzip_icentia11k
-   unzip_icentia11k(
-       db_dir='data/icentia11k',
-       patient_ids=icentia11k.ds_patie
+    tensorflow 2.16
+    keras 3.3
+    ```
 
 3. *Run the pretraining job of your choice.* Let's run a beat classification job which will produce output files, such as training history or model checkpoints, that can be found in the `jobs/beat_classification` directory. Notice the `--arch` option that we used to specify ResNet-18 as the architecture that we want to pretrain. For more options, see `pretraining/trainer.py`.
 
