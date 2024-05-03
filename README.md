@@ -4,9 +4,9 @@ This file describes the Google Colab implementation to reproduce the results fro
 
 ### Preparation
 
-1. *Data, model weights, and original paper code are stored on Google Drive, the notebook pulls down those information
+1. *Project Setup* Data, model weights, and original paper code are stored on Google Drive, the notebook pulls down those information
 
-2. *Some key packages' version used in this reproduction.
+2. *Project Dependencies* Some key packages' version used in this reproduction.
     ```python
     tensorflow 2.16
     keras 3.3
