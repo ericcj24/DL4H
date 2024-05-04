@@ -64,18 +64,4 @@ This file describes the Google Colab implementation to reproduce the results fro
     ``` 
 
 
-5. *Save weights for finetuning.* Now that we have pretrained our ResNet-18, let's extract its weights from a model checkpoint into a separate file which we will later use for finetuning. However, first we need to choose the model checkpoint that we want to get the weights from. A solid choice is a checkpoint that scored good on our validation metric. 
 
-    Since we have trained our network for only one epoch in the step above, which produced only one checkpoint `jobs/beat_classification/epoch_01/model.weights`, we will simply use that checkpoint. After running the code snippet below, our weights will be stored in the `jobs/beat_classification/resnet18.weights` file.
-
-    ```python
-   from pretraining.utils import get_pretrained_weights
-   resnet18 = get_pretrained_weights(
-       checkpoint_file='jobs/beat_classification/epoch_01/model.weights',
-       task='beat',
-       arch='resnet18')
-   resnet18.save_weights('jobs/beat_classification/resnet18.weights')
-    ```
-
-
-6. That's it! See [finetuning](../finetuning) for instructions on how to finetune our pretrained network to a different task.
