@@ -1,8 +1,10 @@
-from pretraining.utils import get_pretrained_weights
 
-
-resnet34 = get_pretrained_weights(
-   checkpoint_file='jobs/beat_multiple_epochs_34_classification/epoch_06_model.weights.h5',
-   task='beat',
-   arch='resnet34')
-resnet34.save_weights('jobs/beat_classification/resnet34.weights.h5')
+python -m finetuning.trainer \
+--job-dir "jobs/beat_classification" \
+--train "data/physionet_train.pkl" \
+--test "data/physionet_test.pkl" \
+--weights-file "jobs/beat_classification/resnet18.weights.h5" \
+--val-size 0.0625 \
+--arch "resnet18" \
+--batch-size 64 \
+--epochs 200
