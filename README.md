@@ -4,7 +4,22 @@ This file describes the Google Colab implementation to reproduce the results fro
 
 ### Preparation
 
-1. *Project Setup* Data, model weights, and original paper code are stored on Google Drive, the notebook pulls down those information
+1. *Project Setup* Data, model weights, and original paper code are stored on Google Drive, the notebook pulls down those information. The directory structure are as follows
+    ```python
+    # content are organized as:
+    # /content/
+    #         finetuning/
+    #         jobs/
+    #         pretraining/
+    #         transplant/
+    #         beat_classification
+    #         dl4h_pack/
+    #               transferlearning1.png
+    #         data/
+    #               physionet/
+    #               physionet_test.pkl
+    #               physionet_train.pkl
+    ```
 
 2. *Project Dependencies* Some key packages' version used in this reproduction.
     ```python
