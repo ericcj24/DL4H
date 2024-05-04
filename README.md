@@ -22,7 +22,7 @@ This file describes the Google Colab implementation to reproduce the results fro
     ```
 
 
-2. *Project Dependencies* Some key packages' version used in this reproduction.
+2. *Project Dependencies* Some key packages' version used in this reproduction. Please note due to CoLab preload a version of cmake that conflicts with original paper's requirement, here we unstall cmake first, then install it as part of a dependency on samplerate package later on.
     ```
     python  3.11
     tensorflow 2.16
@@ -38,6 +38,7 @@ This file describes the Google Colab implementation to reproduce the results fro
        pip install --upgrade pip
        pip install -r requirements.txt
    ```
+
 
 
 3. *Data* in this project are following three datasets:
