@@ -50,18 +50,42 @@ This file describes the Google Colab implementation to reproduce the results fro
 
 
 
-4. *Run the pretraining job of your choice.* Let's run a beat classification job which will produce output files, such as training history or model checkpoints, that can be found in the `jobs/beat_classification` directory. Notice the `--arch` option that we used to specify ResNet-18 as the architecture that we want to pretrain. For more options, see `pretraining/trainer.py`.
-
-    If you decided not to unzip the files, but rather want to unzip them on the fly during training, then remove the `--unzipped` option and change the `--train` option to `data/icentia11k`. 
+4. *Run the pretraining job of your choice.* Example is a beat classification job, it will produce output files, such as training history or model checkpoints, that can be found in the `jobs/beat_classification` directory.
 
     ```shell script
     python -m pretraining.trainer \
-    --job-dir "jobs/beat_classification" \
-    --task "beat" \
-    --train "data/icentia11k_unzipped" \
-    --unzipped \
-    --arch "resnet18"
+        --job-dir "jobs/beat_classification" \
+        --task "beat" \
+        --train "data/icentia11k_unzipped" \
+        --unzipped \
+        --arch "resnet18"
     ``` 
 
+5. *Finetuning* Following comand would finetune on af classificaation.
+    ```shell script
+    python -m finetuning.trainer \
+        --job-dir "dl4h_model/mod_jobs/af_classification" \
+        --train "data/physionet_train.pkl" \
+        --test "data/physionet_test.pkl" \
+        --weights-file "dl4h_model/mod_jobs/beat_classification/resnet18.weights.h5" \
+        --val-size 0.0625 \
+        --arch "resnet18" \
+        --batch-size 64 \
+        --epochs 200
+    ```
 
+6. *Downstream task* On PTBxl dataset
+    ```shell script
+    python -m finetuning.trainer \
+        --job-dir "dl4h_model/mod_jobs/ptbxl_classification" \
+        --train "data/ptbxl_train.pkl" \
+        --test "data/ptbxl_test.pkl" \
+        --weights-file "dl4h_model/mod_jobs/hr_classification/resnet18.weights.h5" \
+        --val-size 0.0625 \
+        --subset 0.25 \
+        --arch "resnet18" \
+        --batch-size 32 \
+        --epochs 20
+    ```
 
+7. *Results* are documented in the jupyter notebook, in reproduction, we showed that pretrained model performaned better than randomly initialized model on downstream task. It also indicates that pretrained model trains faster.
